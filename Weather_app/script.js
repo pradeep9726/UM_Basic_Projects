@@ -1,4 +1,4 @@
-const apiKey = "5b03b11e2e08e6d7f20b051ceaa1bce1";
+const apiKey = "5b03b11e2e08e6d7f20b051ceaa1bce1"; 
 const searchBtn = document.getElementById("searchBtn");
 const cityInput = document.getElementById("cityInput");
 const weatherInfo = document.getElementById("weatherInfo");
@@ -25,16 +25,17 @@ async function getWeather() {
     displayWeather(data);
   } catch (error) {
     weatherInfo.innerHTML = "⚠️ Error fetching data. Please try again later.";
+    console.error(error);
   }
 }
 
 function displayWeather(data) {
-  const { name, main, weather } = data;
+  const { name, main, weather, wind } = data;
   weatherInfo.innerHTML = `
     <h2>${name}</h2>
     <p>${weather[0].main} - ${weather[0].description}</p>
     <p>🌡️ Temperature: ${main.temp} °C</p>
     <p>💧 Humidity: ${main.humidity}%</p>
-    <p>🌬️ Wind Speed: ${data.wind.speed} m/s</p>
+    <p>🌬️ Wind Speed: ${wind.speed} m/s</p>
   `;
 }
